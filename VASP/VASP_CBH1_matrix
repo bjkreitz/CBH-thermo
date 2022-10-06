@@ -1,0 +1,18 @@
+Adsorbate	*OH	HOOH_vdW	CH3OH_vdW	H2O_vdW	C2H4_vdW	CH4_vdW	*CH2	*CH	C2H6_vdW	*CH3	H2CO_vdW
+*OOH	1	1		-1							
+*OCH3	1		1	-1							
+*C*C					1	-2	2				
+*CCH2					1	-1	1				
+*CCH3						-1		1	1		
+*CH*CH						-2	2		1		
+*CH2*CH2						-2			1	2	
+*COH			1			-1		1			
+*CH2*CH						-2	1		1	1	
+*CH2CH3						-1			1	1	
+H2*COH			1			-1				1	
+*CH*C					1	-2	1			1	
+*CHCH3						-1	1		1		
+H*CO						-1				1	1
+H*C*O	1		1	-1		-1	1				
+H*COH			1			-1	1				
+H2*C*O	1		1	-1		-1				1	

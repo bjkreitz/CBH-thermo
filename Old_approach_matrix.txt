@@ -1,0 +1,73 @@
+	$\mathbf{CH_4}$	$\mathbf{H_2O}$	$\mathbf{H_2}$
+$\mathbf{^*OH}$		1	1
+$\mathbf{HOOH^{phys}}$		1	1
+$\mathbf{CH_3OH^{phys}}$	1	1	1
+$\mathbf{H_2O^{phys}}$		1	1
+$\mathbf{C_2H_4^{phys}}$	1		1
+$\mathbf{CH_4^{phys}}$	1		1
+$\mathbf{^*CH_2}$	1		1
+$\mathbf{^*CH}$	1		1
+$\mathbf{C_2H_6^{phys}}$	1		1
+$\mathbf{^*CH_3}$	1		1
+$\mathbf{H_2CO^{phys}}$	1	1	1
+$\mathbf{^*OOH}$		1	1
+$\mathbf{^*OCH_3}$	1	1	1
+$\mathbf{^*C^*C}$	1		1
+$\mathbf{^*CCH_2}$	1		1
+$\mathbf{^*CCH_3}$	1		1
+$\mathbf{^*CH^*CH}$	1		1
+$\mathbf{^*CH_2^*CH_2}$	1		1
+$\mathbf{^*COH}$	1	1	1
+$\mathbf{^*CH_2^*CH}$	1		1
+$\mathbf{^*CH_2CH_3}$	1		1
+$\mathbf{H_2^*COH}$	1	1	1
+$\mathbf{^*CH^*C}$	1		1
+$\mathbf{^*CHCH_3}$	1		1
+$\mathbf{H^*CO}$	1	1	1
+$\mathbf{H^*C^*O}$	1	1	1
+$\mathbf{H^*COH}$	1	1	1
+$\mathbf{H_2^*C^*O}$	1	1	1
+$\mathbf{^*CCHCH_2}$	1		1
+$\mathbf{^*CHCHCH_2}$	1		1
+$\mathbf{^*CHCHCH_3}$	1		1
+$\mathbf{^*CH_2CH_2CH_3}$	1		1
+$\mathbf{CH_2^*CCH_3}$	1		1
+$\mathbf{CH_3^*CHCH_3}$	1		1
+$\mathbf{^*CH_2^*CH^*CH_2}$	1		1
+$\mathbf{^*COOH}$	1	1	1
+$\mathbf{CH_3^*CO}$	1	1	1
+$\mathbf{^*CHCO}$	1	1	1
+$\mathbf{H_2C^*O_2CH_3}$	1	1	1
+$\mathbf{H_2C^*O^*O}$	1	1	1
+$\mathbf{^*OCH_2CH_3}$	1	1	1
+$\mathbf{CO_2^{phys}}$	1	1	1
+$\mathbf{HCOO^*}$	1	1	1
+$\mathbf{CH_2CO^{phys}}$	1	1	1
+$\mathbf{CH_3CHCH_2^{phys}}$	1		1
+$\mathbf{CH_3CH_2CH_3^{phys}}$	1		1
+$\mathbf{HCOOH^{phys}}$	1	1	1
+$\mathbf{HCO_2CH_3^{phys}}$	1	1	1
+$\mathbf{OC^*O^*O}$	1	1	1
+$\mathbf{HC^*O_3}$	1	1	1
+$\mathbf{^*CCCH_2}$	1		1
+$\mathbf{^*C^*CCH_2}$	1		1
+$\mathbf{^*CCH_2CH_3}$	1		1
+$\mathbf{^*CCH_2OH}$	1	1	1
+$\mathbf{^*CCHO}$	1	1	1
+$\mathbf{^*CCO}$	1	1	1
+$\mathbf{CH_3CH_2^*CO}$	1	1	1
+$\mathbf{CH_3CH_2OH^{phys}}$	1	1	1
+$\mathbf{CH_3^*CHOH}$	1	1	1
+$\mathbf{CH_3^*COH}$	1	1	1
+$\mathbf{^*CHCCH_2}$	1		1
+$\mathbf{^*CHCH_2CH_3}$	1		1
+$\mathbf{CH_3^*CCH_3}$	1		1
+$\mathbf{CH_3CHO^{phys}}$	1	1	1
+$\mathbf{CH_2CCH_2^{phys}}$	1		1
+$\mathbf{^*CHCH_2}$	1		1
+$\mathbf{CH_3^*CH^*CH_2}$	1		1
+$\mathbf{CH_3OCH_3^{phys}}$	1	1	1
+$\mathbf{H_2CO_2H_2^{phys}}$	1	1	1
+$\mathbf{OCO_2H_2^{phys}}$	1	1	1
+$\mathbf{CH_3OCH_2OH^{phys}}$	1	1	1
+$\mathbf{^*OCH_2OH}$	1	1	1
