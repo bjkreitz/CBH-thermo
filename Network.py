@@ -49,9 +49,9 @@ combined=pd.concat([new,CBH1_matrix])
 
 empty=np.zeros((len(CBH1_matrix.index),len(combined.index)))
 df_empty=pd.DataFrame(empty,
-                 columns=list(combined.index),
-                 index=list(CBH1_matrix.index),
-                 )
+                  columns=list(combined.index),
+                  index=list(CBH1_matrix.index),
+                  )
 df_transposed=df_empty.T
 
 for j in range(len(df_transposed.index)):
@@ -61,17 +61,16 @@ for j in range(len(df_transposed.index)):
             
 combined_2nd=pd.concat([combined,df_transposed],axis=1)  
 
-
 #replace the existing species with the CBH2 level
 for i in range(len(CBH2_matrix.index)):
     for k in range(len(combined_2nd.index)):
-        if CBH2_matrix.index[i] in combined_2nd.index[k]:
+        if CBH2_matrix.index[i] == combined_2nd.index[k]:
             #print(combined_2nd.index[k])
             combined_2nd.iloc[k,:]=0     
             for j in range(len(CBH2_matrix.columns)):
                 for l in range(len(combined_2nd.columns)):
-                    if CBH2_matrix.index[i] in combined_2nd.index[k]:
-                        if CBH2_matrix.columns[j] in combined_2nd.columns[l]:
+                    if CBH2_matrix.index[i] == combined_2nd.index[k]:
+                        if CBH2_matrix.columns[j] == combined_2nd.columns[l]:
                             combined_2nd.iloc[k,l]=CBH2_matrix.iloc[i,j]    
 
 
@@ -84,11 +83,10 @@ for i in range(len(nodesize)):
 
 string_before="$\mathbf{"
 string_end="}$"
-#mathrm_names=(string_before + pd.Series(combined_2nd.index.to_list()) + string_end).tolist()
 mathrm_names=pd.Series(combined_2nd.index.to_list())
 
 df=combined_2nd.rename(columns={x: string_before+x+string_end for x in mathrm_names},
-                       index={x: string_before+x+string_end for x in mathrm_names})
+                        index={x: string_before+x+string_end for x in mathrm_names})
 
 #Create the graph          
 G = nx.MultiGraph()
@@ -119,8 +117,8 @@ gas_names=['$\mathbf{CH_4}$','$\mathbf{CH_3OH}$','$\mathbf{CH_2I_2}$','$\mathbf{
           '$\mathbf{C_2H_4}$','$\mathbf{C_2H_6}$','$\mathbf{H_2O}$','$\mathbf{H_2CO}$',
           '$\mathbf{OH}$']
 exp_names=['$\mathbf{CH_4^{phys}}$','$\mathbf{CH_3OH^{phys}}$','$\mathbf{^*CH}$','$\mathbf{^*CH_2}$',
-           '$\mathbf{^*CH_3}$','$\mathbf{C_2H_4^{phys}}$','$\mathbf{C_2H_6^{phys}}$','$\mathbf{H_2O^{phys}}$',
-           '$\mathbf{H_2CO^{phys}}$','$\mathbf{^*OH}$']
+            '$\mathbf{^*CH_3}$','$\mathbf{C_2H_4^{phys}}$','$\mathbf{C_2H_6^{phys}}$','$\mathbf{H_2O^{phys}}$',
+            '$\mathbf{H_2CO^{phys}}$','$\mathbf{^*OH}$']
 
 color_map = []
 labels={}
@@ -146,15 +144,15 @@ fig, ax = plt.subplots(figsize=(12, 12))
 # Visualize graph components
 nx.draw_networkx_edges(G, pos,connectionstyle="arc3", arrows=False, width=0.4)
 nx.draw_networkx_nodes(G, pos,node_size=new_nodesize*25,node_color=color_map)
-nx.draw_networkx_labels(G, pos,labels, font_size=12,verticalalignment='top')
+nx.draw_networkx_labels(G, pos,labels,font_size=20,verticalalignment='top')
 
-patch_gas = mpatches.Patch( facecolor='y', edgecolor='k', label='$\mathrm{gas\ thermochemistry\ (ATcT)}$')
-patch_exp = mpatches.Patch(facecolor='r', edgecolor='k', label='$\mathrm{exp.\ adsorbate\ thermochemistry}$')
-patch_CBH1 = mpatches.Patch(facecolor='g', edgecolor='k', label='$\mathrm{CBH\u2010 1\ adsorbate\ thermochemistry}$')
-patch_CBH2 = mpatches.Patch(facecolor='b', edgecolor='k', label='$\mathrm{CBH\u2010 2\ adsorbate\ thermochemistry}$')
+patch_gas = mpatches.Patch( facecolor='y', edgecolor='k', label='$\mathrm{gas\u2010 phase\, thermochemistry\ (ATcT)}$')
+patch_exp = mpatches.Patch(facecolor='r', edgecolor='k', label='$\mathrm{exp.\, adsorbate\, thermochemistry}$')
+patch_CBH1 = mpatches.Patch(facecolor='g', edgecolor='k', label='$\mathrm{CBH\u2010 1\, adsorbate\, thermochemistry}$')
+patch_CBH2 = mpatches.Patch(facecolor='b', edgecolor='k', label='$\mathrm{CBH\u2010 2\, adsorbate\, thermochemistry}$')
 
 handles, labels = ax.get_legend_handles_labels()
 ax.legend(handles=[patch_gas, patch_exp, patch_CBH1,patch_CBH2], loc='lower right',bbox_to_anchor=(1,-0.05), ncol=2)
 
 plt.axis('off')
-plt.savefig('CBH_network.png',dpi=600)
+plt.savefig('CBH_network.png',dpi=600, bbox_inches='tight')

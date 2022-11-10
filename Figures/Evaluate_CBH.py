@@ -56,16 +56,16 @@ ax1 = plt.subplot(gs[0, 1])
 space_hf=np.arange(len(results_hf.columns)-4)
 space_hrxn=np.arange(len(results_hf.columns)-4)+1
 
-def get_hf(a):
+def get_hf_cbh3(a):
         
     hf=[]
     hrxn=[]
     for i in range(len(results_hf.index)):
         if results_hf.index[i]==str(a):
-            #hf.append(results_hf.iloc[i,0]-results_hf.iloc[i,5])
-            hf.append(results_hf.iloc[i,1]-results_hf.iloc[i,5])
-            hf.append(results_hf.iloc[i,3]-results_hf.iloc[i,5])
-            hf.append(results_hf.iloc[i,5]-results_hf.iloc[i,5])
+            #hf.append(results_hf.iloc[i,0]-results_hf.iloc[i,-2])
+            hf.append(results_hf.iloc[i,1]-results_hf.iloc[i,-2])
+            hf.append(results_hf.iloc[i,3]-results_hf.iloc[i,-2])
+            hf.append(results_hf.iloc[i,5]-results_hf.iloc[i,-2])
             
             hrxn.append(results_hf.iloc[i,2])
             hrxn.append(results_hf.iloc[i,4])
@@ -76,20 +76,25 @@ def get_hf(a):
     
     return hf,hrxn
 
-print(get_hf('^*CH_2^*CH^*CH_2')[0])
+#print(get_hf('^*CH_2^*CH^*CH_2')[0])
 
 #print("'$\mathrm{" + results_o.index.to_list() + "}$'")
 string_before="$\mathbf{"
 string_end="}$"
 
-ax0.plot(space_hf,get_hf('^*CH_2^*CH^*CH_2')[0])
-ax0.plot(space_hf,get_hf('H_2C^*O_2CH_3')[0])
-ax0.plot(space_hf,get_hf('H_2C^*O^*O')[0])
-ax0.set_ylabel('$\mathrm{\Delta\Delta_fH\ (kJ\,mol^{-1})}$')
+ax0.plot(space_hf,get_hf_cbh3('^*CH_2^*CH^*CH_2')[0], linestyle='solid', marker='o',color=colors[0], markeredgecolor='w', markeredgewidth=2)
+ax0.plot(space_hf,get_hf_cbh3('H_2C^*O_2CH_3')[0], linestyle='solid', marker='o',color=colors[1], markeredgecolor='w', markeredgewidth=2)
+ax0.plot(space_hf,get_hf_cbh3('H_2C^*O^*O')[0], linestyle='solid', marker='o',color=colors[2], markeredgecolor='w', markeredgewidth=2)
+ax0.plot(space_hf,get_hf_cbh3('H_2C^*O^*O')[0], linestyle='solid', marker='o',color=colors[2], markeredgecolor='w', markeredgewidth=2)
 
-ax1.plot(space_hrxn,get_hf('^*CH_2^*CH^*CH_2')[1])
-ax1.plot(space_hrxn,get_hf('H_2C^*O_2CH_3')[1])
-ax1.plot(space_hrxn,get_hf('H_2C^*O^*O')[1])
+#ax0.plot(space_hf,get_hf_cbh3('H_2C^*O^*O')[0], linestyle='solid', marker='o',color=colors[2], markeredgecolor='w', markeredgewidth=2)
+
+ax0.set_ylabel('$\mathrm{\Delta\Delta_fH\ (kJ\,mol^{-1})}$')
+ax0.set_ylim([-4,4])
+
+ax1.plot(space_hrxn,get_hf_cbh3('^*CH_2^*CH^*CH_2')[1])
+ax1.plot(space_hrxn,get_hf_cbh3('H_2C^*O_2CH_3')[1])
+ax1.plot(space_hrxn,get_hf_cbh3('H_2C^*O^*O')[1])
 ax1.set_ylabel('$\mathrm{\Delta H_{rxn}\ (kJ\,mol^{-1})}$')
 
 
@@ -104,7 +109,7 @@ ax1.set_ylabel('$\mathrm{\Delta H_{rxn}\ (kJ\,mol^{-1})}$')
 # 
 # ax0.set_title('$\mathbf{^*O-binding\ adsorbates}$', fontsize=26)
 
-# ax0.set_ylim([-100,100])
+# 
 
 # ax0.bar(no-0.3+100,results_o.iloc[0,0] , width=0.3, color=colors[0], edgecolor='k', linewidth=3,label='$\mathrm{original}$')
 # ax0.bar(no+100,results_o.iloc[0,1] , width=0.3, color=colors[1], edgecolor='k', linewidth=3,label='$\mathrm{CBH-1}$')
