@@ -101,24 +101,23 @@ for j in range(len(df_transposed.index)):
             #key = G.add_edge(str(df.columns[i]), str(df.index[j]), weight=df.iloc[j,i])
             
 #add some manual nodes for the gas phase anchors
-G.add_edge('$\mathbf{CH_4^{phys}}$', '$\mathbf{CH_4}$')
-G.add_edge('$\mathbf{CH_3OH^{phys}}$', '$\mathbf{CH_3OH}$')
+G.add_edge('$\mathbf{CH_4^*}$', '$\mathbf{CH_4}$')
+G.add_edge('$\mathbf{CH_3OH^*}$', '$\mathbf{CH_3OH}$')
 G.add_edge('$\mathbf{^*CH}$', '$\mathbf{CH_2I_2}$')
-G.add_edge('$\mathbf{^*CH_2}$', '$\mathbf{CH_2I_2}$')
+G.add_edge('$\mathbf{^*CH_2}$', '$\mathbf{^*CH_3}$')
 G.add_edge('$\mathbf{^*CH_3}$', '$\mathbf{CH_3I}$')
-G.add_edge('$\mathbf{C_2H_4^{phys}}$', '$\mathbf{C_2H_4}$')
-G.add_edge('$\mathbf{C_2H_6^{phys}}$', '$\mathbf{C_2H_6}$')
-G.add_edge('$\mathbf{H_2O^{phys}}$', '$\mathbf{H_2O}$')
-G.add_edge('$\mathbf{H_2CO^{phys}}$', '$\mathbf{H_2CO}$')
-G.add_edge('$\mathbf{^*OH}$', '$\mathbf{OH}$')
+G.add_edge('$\mathbf{C_2H_4^*}$', '$\mathbf{C_2H_4}$')
+G.add_edge('$\mathbf{C_2H_6^*}$', '$\mathbf{C_2H_6}$')
+G.add_edge('$\mathbf{H_2O^*}$', '$\mathbf{H_2O}$')
+G.add_edge('$\mathbf{H_2CO^*}$', '$\mathbf{H_2CO}$')
+#G.add_edge('$\mathbf{^*OH}$', '$\mathbf{OH}$')
 
 CBH2_names=(string_before + pd.Series(CBH2_matrix.index.to_list()) + string_end).tolist()
 gas_names=['$\mathbf{CH_4}$','$\mathbf{CH_3OH}$','$\mathbf{CH_2I_2}$','$\mathbf{CH_3I}$',
-          '$\mathbf{C_2H_4}$','$\mathbf{C_2H_6}$','$\mathbf{H_2O}$','$\mathbf{H_2CO}$',
-          '$\mathbf{OH}$']
-exp_names=['$\mathbf{CH_4^{phys}}$','$\mathbf{CH_3OH^{phys}}$','$\mathbf{^*CH}$','$\mathbf{^*CH_2}$',
-            '$\mathbf{^*CH_3}$','$\mathbf{C_2H_4^{phys}}$','$\mathbf{C_2H_6^{phys}}$','$\mathbf{H_2O^{phys}}$',
-            '$\mathbf{H_2CO^{phys}}$','$\mathbf{^*OH}$']
+          '$\mathbf{C_2H_4}$','$\mathbf{C_2H_6}$','$\mathbf{H_2O}$','$\mathbf{H_2CO}$']
+exp_names=['$\mathbf{CH_4^*}$','$\mathbf{CH_3OH^*}$','$\mathbf{^*CH}$','$\mathbf{^*CH_2}$',
+            '$\mathbf{^*CH_3}$','$\mathbf{C_2H_4^*}$','$\mathbf{C_2H_6^*}$','$\mathbf{H_2O^*}$',
+            '$\mathbf{H_2CO^*}$','$\mathbf{^*OH}$']
 
 color_map = []
 labels={}
@@ -134,11 +133,11 @@ for node in G:
     else:
         color_map.append('g')
 
-anchors=np.ones(9)*50
+anchors=np.ones(8)*50
 new_nodesize=np.append(nodesize,anchors)
 
 # Generate layout for visualization
-pos = nx.spring_layout(G,seed=1004)
+pos = nx.spring_layout(G,seed=1008)
 
 fig, ax = plt.subplots(figsize=(12, 12))
 # Visualize graph components

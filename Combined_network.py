@@ -173,18 +173,17 @@ def graph(a):
     G.add_edge('$\mathbf{CH_4^*}$', '$\mathbf{CH_4}$')
     G.add_edge('$\mathbf{CH_3OH^*}$', '$\mathbf{CH_3OH}$')
     G.add_edge('$\mathbf{^*CH}$', '$\mathbf{CH_2I_2}$')
-    G.add_edge('$\mathbf{^*CH_2}$', '$\mathbf{CH_2I_2}$')
+    G.add_edge('$\mathbf{^*CH_2}$', '$\mathbf{^*CH_3}$')
     G.add_edge('$\mathbf{^*CH_3}$', '$\mathbf{CH_3I}$')
     G.add_edge('$\mathbf{C_2H_4^*}$', '$\mathbf{C_2H_4}$')
     G.add_edge('$\mathbf{C_2H_6^*}$', '$\mathbf{C_2H_6}$')
     G.add_edge('$\mathbf{H_2O^*}$', '$\mathbf{H_2O}$')
     G.add_edge('$\mathbf{H_2CO^*}$', '$\mathbf{H_2CO}$')
-    G.add_edge('$\mathbf{^*OH}$', '$\mathbf{OH}$')
+    #G.add_edge('$\mathbf{^*OH}$', '$\mathbf{H2O}$')
 
     CBH2_names=(string_before + pd.Series(CBH2_matrix.index.to_list()) + string_end).tolist()
     gas_names=['$\mathbf{CH_4}$','$\mathbf{CH_3OH}$','$\mathbf{CH_2I_2}$','$\mathbf{CH_3I}$',
-              '$\mathbf{C_2H_4}$','$\mathbf{C_2H_6}$','$\mathbf{H_2O}$','$\mathbf{H_2CO}$',
-              '$\mathbf{OH}$']
+              '$\mathbf{C_2H_4}$','$\mathbf{C_2H_6}$','$\mathbf{H_2O}$','$\mathbf{H_2CO}$']
     exp_names=['$\mathbf{CH_4^*}$','$\mathbf{CH_3OH^*}$','$\mathbf{^*CH}$','$\mathbf{^*CH_2}$',
                '$\mathbf{^*CH_3}$','$\mathbf{C_2H_4^*}$','$\mathbf{C_2H_6^*}$','$\mathbf{H_2O^*}$',
                '$\mathbf{H_2CO^*}$','$\mathbf{^*OH}$']
@@ -203,7 +202,7 @@ def graph(a):
         else:
             color_map.append('g')
 
-    anchors=np.ones(9)*5
+    anchors=np.ones(8)*5
     new_nodesize=np.append(nodesize,anchors)
     
     # Generate layout for visualization
@@ -212,7 +211,7 @@ def graph(a):
     # Visualize graph components
     nx.draw_networkx_edges(G, pos,connectionstyle="arc3", arrows=False, width=0.4)
     nx.draw_networkx_nodes(G, pos,node_size=new_nodesize*35,node_color=color_map)
-    #nx.draw_networkx_labels(G, pos,labels, font_size=16,verticalalignment='top')
+    nx.draw_networkx_labels(G, pos,labels, font_size=16,verticalalignment='top')
     
     patch_gas = mpatches.Patch( facecolor='r', edgecolor='k', label='$\mathrm{\Delta_f H_{gas\, phase}^{ATcT}}$')
     patch_exp = mpatches.Patch(facecolor='y', edgecolor='k', label='$\mathrm{\Delta_f H_{adsorbate}^{exp}}$')
@@ -232,13 +231,16 @@ def graph(a):
     import string 
     ax0.text(0.0, 1.0, string.ascii_lowercase[0], transform=ax0.transAxes, size=20, weight='bold')
     ax1.text(0.0, 1.0, string.ascii_lowercase[1], transform=ax1.transAxes, size=20, weight='bold')
-    plt.savefig('network_empty.png',dpi=600, bbox_inches='tight')
+    plt.savefig('network.png',dpi=600, bbox_inches='tight')
     plt.show()
     return 
 
-graph(1046)
-
+#graph(1046)
+graph(1029)
 #vec=np.linspace(1000,1050,51)
 #for i in vec:
+#    plt.rcParams['figure.figsize'] = (10, 10)
 #    graph(int(i))
+
+
 #    print(i)

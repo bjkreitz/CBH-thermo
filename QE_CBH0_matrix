@@ -1,0 +1,62 @@
+Adsorbate	H_2^*	CH_4^*	H_2O^*	^*H
+^*OOH	-2		2	1
+^*OCH_3	-2	1	1	1
+^*C^*C				
+^*CCH_2				
+^*CCH_3				
+^*CH^*CH				
+^*CH_2^*CH_2	-3	2		2
+^*COH				
+^*CH_2^*CH				
+^*CH_2CH_3	-2	2		1
+H_2^*COH	-2	1	1	1
+^*CH^*C				
+^*CHCH_3				
+H^*CO				
+H^*C^*O				
+H^*COH				
+H_2^*C^*O	-3	1	1	2
+^*CCHCH_2				
+^*CHCHCH_2				
+^*CHCHCH_3				
+^*CH_2CH_2CH_3	-3	3		1
+CH_2^*CCH_3				
+CH_3^*CHCH_3	-3	3		1
+^*CH_2^*CH^*CH_2	-5	3		3
+^*COOH				
+CH_3^*CO				
+^*CHCO				
+H_2C^*O_2CH_3	-4	2	2	1
+H_2C^*O^*O	-4	1	2	2
+^*OCH_2CH_3	-3	2	1	1
+CO_2^*				
+HCOO^*				
+CH_2CO^*				
+CH_3CHCH_2^*				
+CH_3CH_2CH_3^*	-2	3		
+HCOOH^*				
+HCO_2CH_3^*				
+OC^*O^*O				
+HC^*O_3				
+^*CCCH_2				
+^*C^*CCH_2				
+^*CCH_2CH_3				
+^*CCH_2OH				
+^*CCHO				
+^*CCO				
+CH_3CH_2^*CO				
+CH_3CH_2OH^*	-2	2	1	
+CH_3^*CHOH	-3	2	1	1
+CH_3^*COH				
+^*CHCCH_2				
+^*CHCH_2CH_3				
+CH_3^*CCH_3				
+CH_3CHO^*				
+CH_2CCH_2^*				
+^*CHCH_2				
+CH_3^*CH^*CH_2	-4	3		2
+CH_3OCH_3^*	-2	2	1	
+H_2CO_2H_2^*	-2	1	2	
+OCO_2H_2^*				
+CH_3OCH_2OH^*	-3	2	2	
+^*OCH_2OH	-3	1	2	1

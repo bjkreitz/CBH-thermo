@@ -1,6 +1,4 @@
 	$\mathbf{CH_4}$	$\mathbf{H_2O}$	$\mathbf{H_2}$
-$\mathbf{^*OH}$		1	1
-$\mathbf{HOOH^{phys}}$		1	1
 $\mathbf{CH_3OH^{phys}}$	1	1	1
 $\mathbf{H_2O^{phys}}$		1	1
 $\mathbf{C_2H_4^{phys}}$	1		1

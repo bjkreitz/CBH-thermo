@@ -6,12 +6,12 @@ import matplotlib.patches as mpatches
 
 plt.rcParams['figure.figsize'] = (14, 6)
 plt.rcParams['axes.linewidth'] = 2
-plt.rc('xtick', labelsize=20)
-plt.rc('ytick', labelsize=20)
-plt.rc('axes', labelsize=20)
-plt.rc('legend', fontsize=20)
+plt.rc('xtick', labelsize=18)
+plt.rc('ytick', labelsize=18)
+plt.rc('axes', labelsize=18)
+plt.rc('legend', fontsize=16)
 plt.rcParams['lines.markersize'] = 10
-plt.rcParams['lines.linewidth'] = 2
+plt.rcParams['lines.linewidth'] = 3
 plt.rcParams['xtick.direction'] = 'in'
 plt.rcParams['ytick.direction'] = 'in'
 plt.rcParams['xtick.major.size'] = 10
@@ -44,9 +44,16 @@ binding_c=['^*CCH_2','^*CCH_3','^*COH','^*CH_2CH_3','H_2^*COH','^*CHCH_3',
            'H^*CO','H^*COH','^*COOH','CH_3^*CO','^*CHCO','^*CCH_2OH','^*CCHO','^*CCO','CH_3^*CHOH',
            'CH_3^*COH','^*CHCH_2']
 
-binding_vdW=['CO_2^{phys}','CH_2CO^{phys}','CH_3CHCH_2^{phys}','CH_3CH_2CH_3^{phys}','HCOOH^{phys}',
-             'HCO_2CH_3^{phys}','CH_3CH_2OH^{phys}','CH_3CHO^{phys}','CH_2CCH_2^{phys}',
-             'CH_3OCH_3^{phys}','H_2CO_2H_2^{phys}','OCO_2H_2^{phys}','CH_3OCH_2OH^{phys}']
+binding_c_all=['^*CCH_2','^*CCH_3','^*COH','^*CH_2CH_3','H_2^*COH','^*CHCH_3',
+           'H^*CO','H^*COH','^*COOH','CH_3^*CO','^*CHCO','^*CCH_2OH','^*CCHO','^*CCO','CH_3^*CHOH',
+           'CH_3^*COH','^*CHCH_2','^*CCHCH_2','^*CHCHCH_2','^*CHCHCH_3','^*CH_2CH_2CH_3',
+                      'CH_2^*CCH_3','CH_3^*CHCH_3','^*CCCH_2',
+                      '^*CCH_2CH_3','CH_3CH_2^*CO','CH_3^*CHOH',
+                      '^*CHCCH_2','^*CHCH_2CH_3','CH_3^*CCH_3']
+
+binding_vdW=['CO_2^*','CH_2CO^*','CH_3CHCH_2^*','CH_3CH_2CH_3^*','HCOOH^*',
+             'HCO_2CH_3^*','CH_3CH_2OH^*','CH_3CHO^*','CH_2CCH_2^*',
+             'CH_3OCH_3^*','H_2CO_2H_2^*','OCO_2H_2^*','CH_3OCH_2OH^*']
 bidentate=['^*C^*C','^*CH^*CH','^*CH_2^*CH_2','^*CH_2^*CH','^*CH^*C','H^*C^*O',
            'H_2^*C^*O','^*CH_2^*CH^*CH_2','H_2C^*O^*O','OC^*O^*O','HC^*O_3','^*C^*CCH_2',
            'CH_3^*CH^*CH_2']
@@ -57,6 +64,7 @@ CBH1_matrix=CBH1_matrix.fillna(0)
 
 def get_error(a):
     error=[]
+    hrxn=[]
     for i in range(len(CBH1_matrix.index)):
         if CBH1_matrix[a][i] !=0:
             spcs=CBH1_matrix.index[i]
@@ -66,21 +74,23 @@ def get_error(a):
                     if CBH1_matrix.index[i] == results.index[j]:
                         dev=results.iloc[j,1]-results.iloc[j,0]
                         error.append(dev)
+                        hrxn.append(results.iloc[j,2])
                  
-    MAE=np.mean(np.abs(error))           
+    MAE=np.mean(np.abs(error))   
+    avg_hrxn=np.mean(np.abs(hrxn))        
                  
-    return error, MAE
+    return error, MAE, hrxn, avg_hrxn
 
 ch2_error=get_error("^*CH_2")
 ch_error=get_error("^*CH")
 ch3_error=get_error("^*CH_3")
 oh_error=get_error("^*OH")
-c2h6_error=get_error("C_2H_6^{phys}")
-c2h4_error=get_error("C_2H_4^{phys}")
-ch4_error=get_error("CH_4^{phys}")
-h2o_error=get_error("H_2O^{phys}")
-h2co_error=get_error("H_2CO^{phys}")
-ch3oh_error=get_error("CH_3OH^{phys}")
+c2h6_error=get_error("C_2H_6^*")
+c2h4_error=get_error("C_2H_4^*")
+ch4_error=get_error("CH_4^*")
+h2o_error=get_error("H_2O^*")
+h2co_error=get_error("H_2CO^*")
+ch3oh_error=get_error("CH_3OH^*")
 
 results_o=[]
 for no,spcs in enumerate(binding_o):
@@ -90,33 +100,40 @@ results_o=pd.DataFrame(results_o)
 
 def get_error_binding_atom(a):
     error=[]
+    hrxn=[]
     for i in range(len(results.index)):
         for j in range(len(a)):
             if results.index[i] != '^*OOH':
                 if results.index[i] == a[j]:
                     dev=results.iloc[i,1]-results.iloc[i,0]
                     error.append(dev)
-                 
+                    hrxn.append(results.iloc[j,2])
+                    
     MAE=np.mean(np.abs(error))           
-                 
-    return error, MAE
+    avg_hrxn=np.mean(np.abs(hrxn))  
+    
+    return error, MAE, hrxn, avg_hrxn
 
 error_o=get_error_binding_atom(binding_o)
 error_c=get_error_binding_atom(binding_c)
 error_c3=get_error_binding_atom(binding_c3)
+error_c_all=get_error_binding_atom(binding_c_all)
 error_bidentate=get_error_binding_atom(bidentate)
 error_vdW=get_error_binding_atom(binding_vdW)
 
 def get_error_all():
     error=[]
+    hrxn=[]
     for i in range(len(results.index)):
             if results.index[i] != '^*OOH':
                     dev=results.iloc[i,1]-results.iloc[i,0]
                     error.append(dev)
+                    hrxn.append(results.iloc[i,2])
+                    
+    MAE=np.mean(np.abs(error))   
+    avg_hrxn=np.mean(np.abs(hrxn))        
                  
-    MAE=np.mean(np.abs(error))           
-                 
-    return error, MAE
+    return error, MAE, hrxn, avg_hrxn
 
 error_all=get_error_all()
 
@@ -147,65 +164,61 @@ results_c3=pd.DataFrame(results_c3)
 colormap = plt.cm.Dark2
 colors = [colormap(i) for i in np.linspace(0, 1, 4)]
 
-gs = gridspec.GridSpec(nrows=1, ncols=3)
+gs = gridspec.GridSpec(nrows=1, ncols=2)
 gs.update(wspace=0.4, hspace=0.4)
 
 ax0 = plt.subplot(gs[0, 0])
 ax1 = plt.subplot(gs[0, 1])
-ax2 = plt.subplot(gs[0, 2])
 
-#gridspec_kw={'height_ratios': [...]}
+ax0.bar(-0.125,error_o[1], width=0.25,color=colors[0], edgecolor='k', label='$\mathrm{\Delta\Delta_fH}$')
+ax0.bar(1-0.125,error_c_all[1], width=0.25,color=colors[0], edgecolor='k')
+ax0.bar(2-0.125,error_bidentate[1], width=0.25,color=colors[0], edgecolor='k')
+ax0.bar(3-0.125,error_vdW[1], width=0.25,color=colors[0], edgecolor='k')
 
-# ax = []
-# fig, axs = plt.subplots(nrows=1, ncols=5)
-# fig.subplots_adjust(hspace=0.5, wspace=0.5)
-# for i, row in enumerate(axs):
-#         ax.append(i)
+ax0.bar(0.25-0.125,error_o[3], width=0.25,color=colors[1], edgecolor='k', label='$\mathrm{\Delta H_{rxn}}$')
+ax0.bar(1.25-0.125,error_c_all[3], width=0.25,color=colors[1], edgecolor='k')
+ax0.bar(2.25-0.125,error_bidentate[3], width=0.25,color=colors[1], edgecolor='k')
+ax0.bar(3.25-0.125,error_vdW[3], width=0.25,color=colors[1], edgecolor='k')
 
-# o_space=np.arange(len(binding_o))
-# c_space=np.arange(len(binding_c))
-# vdW_space=np.arange(len(binding_vdW))
-# bidentate_space=np.arange(len(bidentate))
+ax0.set_xlim([-0.5,3.5])
+ax0.set_ylim([0,80])
+ax0.set_ylabel('$\mathrm{mean\ absolute\ deviation\ (kJ\,mol^{-1})}$') 
+ax0.set_xticks([0,1,2,3])
+ax0.set_xticklabels(['$\mathrm{^*O\u2010 X}$','$\mathrm{^*C\u2010 X}$','$\mathrm{bidentate}$', '$\mathrm{vdW}$'])
+ax0.legend()
 
-# string_before="$\mathbf{"
-# string_end="}$"
+ax1.bar(0-0.125,ch_error[1], width=0.25,color=colors[0], edgecolor='k', label='$\mathrm{\Delta\Delta_fH}$')
+ax1.bar(1-0.125,ch2_error[1], width=0.25,color=colors[0], edgecolor='k')
+ax1.bar(2-0.125,ch3_error[1], width=0.25,color=colors[0], edgecolor='k')
+ax1.bar(3-0.125,ch4_error[1], width=0.25,color=colors[0], edgecolor='k')
+ax1.bar(4-0.125,c2h4_error[1], width=0.25,color=colors[0], edgecolor='k')
+ax1.bar(5-0.125,c2h6_error[1], width=0.25,color=colors[0], edgecolor='k')
+ax1.bar(6-0.125,h2co_error[1], width=0.25,color=colors[0], edgecolor='k')
+ax1.bar(7-0.125,ch3oh_error[1], width=0.25,color=colors[0], edgecolor='k')
+ax1.bar(8-0.125,h2o_error[1], width=0.25,color=colors[0], edgecolor='k')
+ax1.bar(9-0.125,oh_error[1], width=0.25,color=colors[0], edgecolor='k')
 
+ax1.bar(0.25-0.125,ch_error[3], width=0.25,color=colors[1], edgecolor='k', label='$\mathrm{\Delta H_{rxn}}$')
+ax1.bar(1.25-0.125,ch2_error[3], width=0.25,color=colors[1], edgecolor='k')
+ax1.bar(2.25-0.125,ch3_error[3], width=0.25,color=colors[1], edgecolor='k')
+ax1.bar(3.25-0.125,ch4_error[3], width=0.25,color=colors[1], edgecolor='k')
+ax1.bar(4.25-0.125,c2h4_error[3], width=0.25,color=colors[1], edgecolor='k')
+ax1.bar(5.25-0.125,c2h6_error[3], width=0.25,color=colors[1], edgecolor='k')
+ax1.bar(6.25-0.125,h2co_error[3], width=0.25,color=colors[1], edgecolor='k')
+ax1.bar(7.25-0.125,ch3oh_error[3], width=0.25,color=colors[1], edgecolor='k')
+ax1.bar(8.25-0.125,h2o_error[3], width=0.25,color=colors[1], edgecolor='k')
+ax1.bar(9.25-0.125,oh_error[3], width=0.25,color=colors[1], edgecolor='k')
 
-# font_label={'fontsize': 16,
-#  'fontweight': 'bold'}
-# box={'facecolor':'w'}
+ax1.set_xlim([-0.5,9.5])
+ax1.set_ylim([0,175])
+ax1.set_ylabel('$\mathrm{mean\ absolute\ deviation\ (kJ\,mol^{-1})}$') 
+ax1.set_xticks([0,1,2,3,4,5,6,7,8,9])
+ax1.set_xticklabels(['$\mathrm{^*CH}$','$\mathrm{^*CH_2}$','$\mathrm{^*CH_3}$', '$\mathrm{CH_4^*}$', '$\mathrm{C_2H_4^*}$', '$\mathrm{C_2H_6^*}$',
+                     '$\mathrm{H_2CO^*}$', '$\mathrm{CH_3OH^*}$', '$\mathrm{H_2O^*}$', '$\mathrm{^*OH}$'], rotation=70)
 
-# plots=[binding_o,binding_vdW,bidentate, binding_c,binding_c3]
-# results=[results_o,results_vdW,results_bidentate, results_c,results_c3]
-# titles=['$\mathbf{^*O-X}$','$\mathbf{physisorbed}$','$\mathbf{bidentate}$','$\mathbf{^*C-X}$','$\mathbf{^*C-X}$']
+ax1.legend()
 
-# props=dict(facecolor='w')
-
-# import string 
-
-# for i, ax in enumerate(ax):
-#     axs[i].set_xlim([-130,130])
-#     axs[i].set_xlabel('$\mathrm{\Delta\Delta_fH\ (kJ\,mol^{-1})}$')    
-#     axs[i].set_ylim([-0.5,len(plots[i])])
-    
-#     axs[i].plot((0,0),(-1,len(plots[i])),linestyle='solid',color='k')
-#     axs[i].plot((30,30),(-1,len(plots[i])),linestyle='dashed',color='k')
-#     axs[i].plot((-30,-30),(-1,len(plots[i])),linestyle='dashed',color='k')
-#     axs[i].set_yticks([])
-#     axs[i].set_title(titles[i], fontsize=22)
-#     axs[i].text(-0.15, 1.05, string.ascii_lowercase[i], transform=axs[i].transAxes, size=24, weight='bold')
-    
-#     for no,spcs in enumerate(plots[i]):
-#         axs[i].barh(no,results[i].iloc[no,1]-results[i].iloc[no,0], height=0.5, color=colors[1], edgecolor='k', linewidth=3)
-        
-#         if results[i].iloc[no,1]-results[i].iloc[no,0] <0:    
-#             axs[i].text(15, no, string_before+spcs+string_end, ha='left',va='center',bbox=props, fontsize='18')
-#         else:
-#             axs[i].text(-15, no, string_before+spcs+string_end, ha='right',va='center',bbox=props, fontsize='18')
-
-# #Create the legend for one of the plots
-# axs[0].barh(no-0.3+100,results_o.iloc[0,0] , height=0.3, color=colors[1], edgecolor='k', linewidth=3,label='$\mathrm{CBH1}$')
-# axs[0].plot((-30,-30),(-1,len(binding_o)),linestyle='dashed',color='k',label='$\mathrm{\pm 30\, kJ\,mol^{-1}}$')
-# axs[0].legend(loc='upper right')
-
-# plt.savefig('Delta_CBH_flipped.pdf', bbox_inches='tight',transparent=False)
+import string 
+ax0.text(-0.25, 1.05, string.ascii_lowercase[0], transform=ax0.transAxes, size=20, weight='bold')
+ax1.text(-0.25, 1.05, string.ascii_lowercase[1], transform=ax1.transAxes, size=20, weight='bold')
+plt.savefig('Summary_CBH.pdf', bbox_inches='tight',transparent=False)
