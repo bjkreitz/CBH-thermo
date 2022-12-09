@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.gridspec as gridspec
+import matplotlib.patches as mpatches
 
 plt.rcParams['figure.figsize'] = (30, 10)
 plt.rcParams['axes.linewidth'] = 2
@@ -28,7 +30,6 @@ plt.rcParams['legend.title_fontsize'] = 14
 plt.rcParams['axes.formatter.limits'] = (-3, 6)
 
 results=pd.read_csv('../CBH_results.txt', sep="\t", header=0, index_col=0)
-
 binding_o=['^*OCH_3','H_2C^*O_2CH_3','^*OCH_2CH_3','HCO^*O','^*OCH_2OH']
 
 binding_c3=['^*CCHCH_2','^*CHCHCH_2','^*CHCHCH_3','^*CH_2CH_2CH_3',
@@ -96,7 +97,8 @@ bidentate_space=np.arange(len(bidentate))
 string_before="$\mathbf{"
 string_end="}$"
 
-font_label={'fontsize': 18,
+
+font_label={'fontsize': 16,
  'fontweight': 'bold'}
 box={'facecolor':'w'}
 
@@ -109,24 +111,21 @@ props=dict(facecolor='w')
 import string 
 
 for i, ax in enumerate(ax):
-    axs[i].set_xlim([-100,100])
-    axs[i].set_xlabel('$\mathrm{\Delta\Delta_fH\ (kJ\,mol^{-1})}$')    
+    axs[i].set_xlim([-320,320])
+    axs[i].set_xlabel('$\mathrm{\Delta H_{rxn}\ (kJ\,mol^{-1})}$')    
     axs[i].set_ylim([-0.5,len(plots[i])])
     
     axs[i].plot((0,0),(-1,len(plots[i])),linestyle='solid',color='k')
-    axs[i].plot((30,30),(-1,len(plots[i])),linestyle='dashed',color='k')
-    axs[i].plot((-30,-30),(-1,len(plots[i])),linestyle='dashed',color='k')
-
     axs[i].set_yticks([])
     axs[i].set_title(titles[i], fontsize=22)
     axs[i].text(-0.15, 1.05, string.ascii_lowercase[i], transform=axs[i].transAxes, size=24, weight='bold')
     
     for no,spcs in enumerate(plots[i]):
-        axs[i].barh(no,results[i].iloc[no,1]-results[i].iloc[no,0] , height=0.5, color=colors[1], edgecolor='k', linewidth=3,zorder=10)
+        axs[i].barh(no,results[i].iloc[no,2] , height=0.5, color=colors[2], edgecolor='k', linewidth=3)
         
-        if results[i].iloc[no,1]-results[i].iloc[no,0] <0:    
+        if results[i].iloc[no,2] <0:    
             axs[i].text(15, no, string_before+spcs+string_end, ha='left',va='center',bbox=props, fontsize='17')
         else:
             axs[i].text(-15, no, string_before+spcs+string_end, ha='right',va='center',bbox=props, fontsize='17')
 
-plt.savefig('all_cbh_results.pdf', bbox_inches='tight',transparent=False)
+plt.savefig('all_cbh_hrxn_results.pdf', bbox_inches='tight',transparent=False)

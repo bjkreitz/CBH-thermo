@@ -2,7 +2,6 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
-import matplotlib.patches as mpatches
 
 plt.rcParams['figure.figsize'] = (14, 6)
 plt.rcParams['axes.linewidth'] = 2
@@ -28,12 +27,10 @@ plt.rcParams['legend.columnspacing'] = 0.1
 plt.rcParams['legend.labelspacing'] = 0.1
 plt.rcParams['legend.title_fontsize'] = 14
 plt.rcParams['axes.formatter.limits'] = (-3, 6)
-plt.rcParams['hatch.linewidth'] = 3.0  # previous svg hatch linewidth
 
-results=pd.read_csv('../CBH_results_CH4_corrected.txt', sep="\t", header=0, index_col=0)
-#CBH1_matrix=CBH1_matrix.fillna(0)
+results=pd.read_csv('../CBH_results.txt', sep="\t", header=0, index_col=0)
 
-binding_o=['^*OCH_3','H_2C^*O_2CH_3','^*OCH_2CH_3','HCOO^*','^*OCH_2OH']
+binding_o=['^*OCH_3','H_2C^*O_2CH_3','^*OCH_2CH_3','HCO^*O','^*OCH_2OH']
 
 binding_c3=['^*CCHCH_2','^*CHCHCH_2','^*CHCHCH_3','^*CH_2CH_2CH_3',
            'CH_2^*CCH_3','CH_3^*CHCH_3','^*CCCH_2',
@@ -68,7 +65,6 @@ def get_error(a):
     for i in range(len(CBH1_matrix.index)):
         if CBH1_matrix[a][i] !=0:
             spcs=CBH1_matrix.index[i]
-            #print(spcs)
             for j in range(len(results.index)):
                 if CBH1_matrix.index[i] != '^*OOH':
                     if CBH1_matrix.index[i] == results.index[j]:
@@ -170,24 +166,24 @@ gs.update(wspace=0.4, hspace=0.4)
 ax0 = plt.subplot(gs[0, 0])
 ax1 = plt.subplot(gs[0, 1])
 
-ax0.bar(-0.125,error_o[1], width=0.25,color=colors[0], edgecolor='k', label='$\mathrm{\Delta\Delta_fH}$')
+ax0.bar(-0.125,error_o[1], width=0.25,color=colors[0], edgecolor='k', label='$\mathrm{\overline{|\Delta\Delta_fH|}}$')
 ax0.bar(1-0.125,error_c_all[1], width=0.25,color=colors[0], edgecolor='k')
 ax0.bar(2-0.125,error_bidentate[1], width=0.25,color=colors[0], edgecolor='k')
 ax0.bar(3-0.125,error_vdW[1], width=0.25,color=colors[0], edgecolor='k')
 
-ax0.bar(0.25-0.125,error_o[3], width=0.25,color=colors[1], edgecolor='k', label='$\mathrm{\Delta H_{rxn}}$')
+ax0.bar(0.25-0.125,error_o[3], width=0.25,color=colors[1], edgecolor='k', label='$\mathrm{\overline{|\Delta H_{rxn}|}}$')
 ax0.bar(1.25-0.125,error_c_all[3], width=0.25,color=colors[1], edgecolor='k')
 ax0.bar(2.25-0.125,error_bidentate[3], width=0.25,color=colors[1], edgecolor='k')
 ax0.bar(3.25-0.125,error_vdW[3], width=0.25,color=colors[1], edgecolor='k')
 
 ax0.set_xlim([-0.5,3.5])
 ax0.set_ylim([0,80])
-ax0.set_ylabel('$\mathrm{mean\ absolute\ deviation\ (kJ\,mol^{-1})}$') 
+ax0.set_ylabel('$\mathrm{enthalpy\ (kJ\,mol^{-1})}$') 
 ax0.set_xticks([0,1,2,3])
 ax0.set_xticklabels(['$\mathrm{^*O\u2010 X}$','$\mathrm{^*C\u2010 X}$','$\mathrm{bidentate}$', '$\mathrm{vdW}$'])
 ax0.legend()
 
-ax1.bar(0-0.125,ch_error[1], width=0.25,color=colors[0], edgecolor='k', label='$\mathrm{\Delta\Delta_fH}$')
+ax1.bar(0-0.125,ch_error[1], width=0.25,color=colors[0], edgecolor='k', label='$\mathrm{\overline{|\Delta\Delta_fH|}}$')
 ax1.bar(1-0.125,ch2_error[1], width=0.25,color=colors[0], edgecolor='k')
 ax1.bar(2-0.125,ch3_error[1], width=0.25,color=colors[0], edgecolor='k')
 ax1.bar(3-0.125,ch4_error[1], width=0.25,color=colors[0], edgecolor='k')
@@ -198,7 +194,7 @@ ax1.bar(7-0.125,ch3oh_error[1], width=0.25,color=colors[0], edgecolor='k')
 ax1.bar(8-0.125,h2o_error[1], width=0.25,color=colors[0], edgecolor='k')
 ax1.bar(9-0.125,oh_error[1], width=0.25,color=colors[0], edgecolor='k')
 
-ax1.bar(0.25-0.125,ch_error[3], width=0.25,color=colors[1], edgecolor='k', label='$\mathrm{\Delta H_{rxn}}$')
+ax1.bar(0.25-0.125,ch_error[3], width=0.25,color=colors[1], edgecolor='k', label='$\mathrm{\overline{|\Delta H_{rxn}|}}$')
 ax1.bar(1.25-0.125,ch2_error[3], width=0.25,color=colors[1], edgecolor='k')
 ax1.bar(2.25-0.125,ch3_error[3], width=0.25,color=colors[1], edgecolor='k')
 ax1.bar(3.25-0.125,ch4_error[3], width=0.25,color=colors[1], edgecolor='k')
@@ -211,7 +207,7 @@ ax1.bar(9.25-0.125,oh_error[3], width=0.25,color=colors[1], edgecolor='k')
 
 ax1.set_xlim([-0.5,9.5])
 ax1.set_ylim([0,175])
-ax1.set_ylabel('$\mathrm{mean\ absolute\ deviation\ (kJ\,mol^{-1})}$') 
+ax1.set_ylabel('$\mathrm{enthalpy\ (kJ\,mol^{-1})}$') 
 ax1.set_xticks([0,1,2,3,4,5,6,7,8,9])
 ax1.set_xticklabels(['$\mathrm{^*CH}$','$\mathrm{^*CH_2}$','$\mathrm{^*CH_3}$', '$\mathrm{CH_4^*}$', '$\mathrm{C_2H_4^*}$', '$\mathrm{C_2H_6^*}$',
                      '$\mathrm{H_2CO^*}$', '$\mathrm{CH_3OH^*}$', '$\mathrm{H_2O^*}$', '$\mathrm{^*OH}$'], rotation=70)
