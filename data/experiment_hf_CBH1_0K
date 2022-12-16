@@ -1,11 +1,11 @@
 	experiment
 *OH	-164.7
-CH3OH_vdW	-244.6
+CH3OH_vdW	-245.0
 H2O_vdW	-267.9
-C2H4_vdW	22.0
-CH4_vdW	-81.1
+C2H4_vdW	22.1
+CH4_vdW	-81.3
 *CH2	46.5
-*CH	-35.7
+*CH	-35.8
 C2H6_vdW	-96.0
 *CH3	-47.2
 H2CO_vdW	-159.3

@@ -140,7 +140,7 @@ ax1.plot((0,3),(Hf_CH3CH2CH3,Hf_CH3CH2CH3),linestyle='solid',color='b')
 ax1.text(1.3,Hf_CH3CH2CH3-va_offset,'$\mathrm{CH_3CH_2CH_{3(g)}}$',va='top',ha='center',size=12)
 
 #CH3CH2CH3*
-Hf_CH3CH2CH3_ads=-120.963385494994-Hf_ref
+Hf_CH3CH2CH3_ads=-120.8-Hf_ref
 ax1.plot((4,7),(Hf_CH3CH2CH3_ads,Hf_CH3CH2CH3_ads),linestyle='solid',color='k')
 ax1.text(5.3,Hf_CH3CH2CH3_ads-va_offset,'$\mathrm{CH_3CH_2CH_3^*}$',va='top',ha='center',size=12)
 
@@ -159,7 +159,7 @@ ax1.arrow(6.2,Hf_CH3CH2CH3_ref-3,0,Hf_CH3CH2CH3_ads-Hf_CH3CH2CH3_ref+6,
 
 
 #*CH2CH2CH3
-Hf_CH2CH2CH3_ads=-92.53+Hf_H-Hf_ref
+Hf_CH2CH2CH3_ads=-92.1+Hf_H-Hf_ref
 ax1.plot((8,11),(Hf_CH2CH2CH3_ads,Hf_CH2CH2CH3_ads),linestyle='solid',color='k')
 ax1.text(9.2,Hf_CH2CH2CH3_ads-va_offset,'$\mathrm{^*CH_2CH_2CH_3}$\n$\mathrm{+\,^*H}$',va='top',ha='center',size=12)
 
@@ -177,7 +177,7 @@ ax1.arrow(10.2,Hf_CH2CH2CH3_ref-3,0,Hf_CH2CH2CH3_ads-Hf_CH2CH2CH3_ref+6,
 ax1.text(10,(Hf_CH2CH2CH3_ref-Hf_CH2CH2CH3_ads)/2+Hf_CH2CH2CH3_ads-1,'$\mathrm{\Delta H_{rxn}}$',va='center',ha='right',size=11,color='r')
 
 #*CH2CH*CH3
-Hf_CH2CHCH3_ads=-101.8+2*Hf_H-Hf_ref
+Hf_CH2CHCH3_ads=-101.2+2*Hf_H-Hf_ref
 ax1.plot((12,15),(Hf_CH2CHCH3_ads,Hf_CH2CHCH3_ads),linestyle='solid',color='k')
 ax1.text(13.5,Hf_CH2CHCH3_ads-va_offset,'$\mathrm{^*CH_2^*CHCH_3}$\n$\mathrm{+\,2\,^*H}$',va='top',ha='center',size=12)
 

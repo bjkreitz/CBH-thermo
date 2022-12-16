@@ -69,12 +69,12 @@ ax1.bar(cbh_rung+0.15,abs_average_zpe_hrxn, width=0.3,color=colors[1], edgecolor
 
 ax1.set_xlim([-0.5,3.5])
 ax1.set_ylim([0,250])
-ax1.set_ylabel('$\mathrm{enthalpy\ (kJ\,mol^{-1})}$') 
+ax1.set_ylabel('$\mathrm{energy\ (kJ\,mol^{-1})}$') 
 ax1.set_xticks([0,1,2,3])
 ax1.set_xticklabels(['$\mathrm{CBH\u2010 0}$','$\mathrm{CBH\u2010 1}$','$\mathrm{CBH\u2010 2}$', '$\mathrm{CBH\u2010 3}$'])
 ax1.legend()
-ax1.arrow(0.2,150,3.1,0, length_includes_head=True, head_length=0.2, head_width=10, color='k')
-ax1.text(1.6,155,'$\mathrm{Increasing\ conservation\ of}$\n$\mathrm{bonding\ environment\ and\ hybridization}$',va='bottom',ha='center',size=14,color='k')
+ax1.arrow(0.2,140,3.1,0, length_includes_head=True, head_length=0.2, head_width=10, color='k')
+ax1.text(1.6,145,'$\mathrm{Increasing\ conservation\ of}$\n$\mathrm{bonding\ environment\ and\ hybridization}$',va='bottom',ha='center',size=14,color='k')
 
 import string 
 ax0.text(-0.25, 1.05, string.ascii_lowercase[0], transform=ax0.transAxes, size=20, weight='bold')

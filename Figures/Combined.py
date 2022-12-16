@@ -56,7 +56,7 @@ bidentate=['^*C^*C','^*CH^*CH','^*CH_2^*CH_2','^*CH_2^*CH','^*CH^*C','H^*C^*O',
            'CH_3^*CH^*CH_2']
 
 
-CBH1_matrix=pd.read_csv('../QE_CBH1_matrix', sep="\t", header=0, index_col=0)
+CBH1_matrix=pd.read_csv('../data/QE_CBH1_matrix', sep="\t", header=0, index_col=0)
 CBH1_matrix=CBH1_matrix.fillna(0)
 
 def get_error(a):
