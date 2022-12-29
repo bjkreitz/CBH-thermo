@@ -17,6 +17,9 @@ check=CBH_matrix.dot(CBH_products['combined'].to_numpy()).to_numpy()
 DFT_heat_of_reaction=-DFT_energies['combined'].to_numpy()+check
 DFT_heat_of_reaction*=96.485
 
+
+
+
 exp_check=CBH_matrix.dot(exp_hf['experiment'].to_numpy())
 
 hf_ads=-DFT_heat_of_reaction+exp_check
@@ -28,6 +31,8 @@ for i in range(len(check)):
        reasonable_hrxn.append(abs(DFT_heat_of_reaction[i]))
 
 average_hrxn=np.mean(reasonable_hrxn)
+
+ser_DFT_heat_of_reaction = pd.Series(data=DFT_heat_of_reaction, index=hf_ads.index)
 
 
 zpe_intermediate=CBH_matrix.dot(CBH_products['ZPE'].to_numpy()).to_numpy()

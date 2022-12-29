@@ -6,8 +6,8 @@ Adsorbate	C_2H_4^*	^*CCH_2	C_2H_6^*	^*CHCH_3	^*CH_2CH_3	^*CHCH_2	CH_3OH^*	^*OCH_
 ^*CH^*C	-1	1				1																		
 H^*C^*O							-1	1	1															
 ^*CCHCH_2			-1							1	1													
-^*CHCHCH_2			-1	1							1													
-^*CHCHCH_3	-1					1					1													
+^*CHCH^*CH_2	-1		-1		1	1					1													
+^*CH^*CHCH_3			-1	1									1											
 ^*CH_2CH_2CH_3			-1		1							1												
 ^*CH_2^*CH^*CH_2			-2		2								1											
 ^*CHCO	-1					1								1										

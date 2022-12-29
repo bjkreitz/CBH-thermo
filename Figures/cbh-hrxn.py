@@ -60,8 +60,8 @@ ax0.set_xticklabels(['$\mathrm{CBH\u2010 0}$', '$\mathrm{CBH\u2010 1}$', '$\math
 ax0.legend()
 
 
-abs_average_hrxn=[199.00175978180815,80.8621488024708,42.27287967740341,20.194310495069754]
-abs_average_zpe_hrxn=[85.98553393442624,10.978384916666652,2.51794725806452,0.9970116666666641]
+abs_average_hrxn=[199.00175978180815,79.500474088207,35.59331649940114,20.194310495069754]
+abs_average_zpe_hrxn=[85.98553393442624,11.543525703124986,2.5521838709677445,0.9970116666666641]
 cbh_rung=np.array([0,1,2,3])
 
 ax1.bar(cbh_rung-0.15,abs_average_hrxn, width=0.3,color=colors[0], edgecolor='k', label='$\mathrm{\overline{|\Delta H_{rxn}|}}$')

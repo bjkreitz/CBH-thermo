@@ -32,14 +32,13 @@ plt.rcParams['axes.formatter.limits'] = (-3, 6)
 results=pd.read_csv('../CBH_results.txt', sep="\t", header=0, index_col=0)
 binding_o=['^*OCH_3','H_2C^*O_2CH_3','^*OCH_2CH_3','HCO^*O','^*OCH_2OH','HC^*O_3']
 
-binding_c3=['^*CCHCH_2','^*CHCHCH_2','^*CHCHCH_3','^*CH_2CH_2CH_3',
+binding_c3=['^*CCHCH_2','^*CH_2CH_2CH_3',
            'CH_2^*CCH_3','CH_3^*CHCH_3','^*CCCH_2',
            '^*CCH_2CH_3','CH_3CH_2^*CO','CH_3^*CHOH',
            '^*CHCCH_2','^*CHCH_2CH_3','CH_3^*CCH_3']
 
 binding_c=['^*CCH_2','^*CCH_3','^*COH','^*CH_2CH_3','H_2^*COH','^*CHCH_3',
-           'H^*CO','H^*COH','^*COOH','CH_3^*CO','^*CHCO','^*CCH_2OH','^*CCHO','^*CCO','CH_3^*CHOH',
-           'CH_3^*COH','^*CHCH_2']
+           'H^*CO','H^*COH','^*COOH','CH_3^*CO','^*CHCO','^*CCH_2OH','^*CCHO', '^*CHCH_2','CH_3^*COH','CH_3^*CHOH','^*CCO' ]
 
 binding_vdW=['CO_2^*','CH_2CO^*','CH_3CHCH_2^*','CH_3CH_2CH_3^*','HCOOH^*',
              'HCO_2CH_3^*','CH_3CH_2OH^*','CH_3CHO^*','CH_2CCH_2^*',
@@ -47,7 +46,7 @@ binding_vdW=['CO_2^*','CH_2CO^*','CH_3CHCH_2^*','CH_3CH_2CH_3^*','HCOOH^*',
 
 bidentate=['^*C^*C','^*CH^*CH','^*CH_2^*CH_2','^*CH_2^*CH','^*CH^*C','H^*C^*O',
            'H_2^*C^*O','^*CH_2^*CH^*CH_2','H_2C^*O^*O','OC^*O^*O','^*C^*CCH_2',
-           'CH_3^*CH^*CH_2']
+           'CH_3^*CH^*CH_2', '^*C^*CH_2','^*CHCH^*CH_2','^*CH^*CHCH_3']
 
 
 results_o=[]
