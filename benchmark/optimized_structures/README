@@ -1,0 +1,3 @@
+These structures were optimized using the specified functionals. The reoptimization changed the structure of some 
+adsorbates, which led to completely different heats of formation. We decided to perform the benchmark without
+optimization because of this issue

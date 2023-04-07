@@ -1,0 +1,4 @@
+species	enthalpy
+CH_4^*	-66.557
+H_2O^*	-238.929
+H_2^*	0
