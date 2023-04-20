@@ -4,7 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-functionals=['beef','pbe','rpbe','pw91','d3rpbe','d3pbe','d3revpbe','d3pbesol']
+functionals=['beef','pbe','rpbe','pw91','d3rpbe','d3pbe','d3revpbe','d3pbesol','revpbe']
 reaction_enthalpies=[]
 enthalpies=[]
 for i in functionals:
